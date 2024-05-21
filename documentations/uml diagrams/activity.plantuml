@@ -1,0 +1,21 @@
+@startuml
+start
+:Load Skin Cancer Data;
+if (Data Loaded Successfully?) then (yes)
+  :Preprocess and Augment Data;
+  :Define Model Architecture;
+  :Compile the Model;
+  :Train the Model;
+  if (Training Complete?) then (yes)
+    :Save the Model;
+  else (no)
+    :Display Training Metrics;
+  endif
+  :Data Evaluation;
+  :Generate Predictions;
+  :Display Predictions;
+else (no)
+  :Display Error Message;
+endif
+stop
+@enduml

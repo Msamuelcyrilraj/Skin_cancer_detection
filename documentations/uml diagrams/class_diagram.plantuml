@@ -1,0 +1,31 @@
+@startuml
+
+class ImageClassificationModel {
+  - model: Sequential
+  + load_model(filename: str): ImageClassificationModel
+  + train(data_train: pathlib.Path, data_test: pathlib.Path, img_height: int, img_width: int): void
+  + save(filename: str): void
+  + predict(image: np.ndarray): Dict[str, float]
+}
+
+class DataPreprocessing {
+  + image_dataset_from_directory(path: pathlib.Path, image_size: Tuple[int, int], batch_size: int): tf.data.Dataset
+  + cache(ds: tf.data.Dataset): tf.data.Dataset
+  + shuffle(ds: tf.data.Dataset, buffer_size: int): tf.data.Dataset
+  + prefetch(ds: tf.data.Dataset, buffer_size: int): tf.data.Dataset
+}
+
+class GradioInterface {
+  + setup(model: ImageClassificationModel): void
+  + launch(share: bool): void
+}
+
+class DataAugmentation {
+  + create_augmentation_pipeline(): keras.Sequential
+}
+
+ImageClassificationModel --> DataPreprocessing
+GradioInterface --> ImageClassificationModel
+ImageClassificationModel --> DataAugmentation
+
+@enduml

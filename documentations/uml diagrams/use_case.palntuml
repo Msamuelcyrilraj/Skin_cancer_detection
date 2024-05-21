@@ -1,0 +1,11 @@
+@startuml
+left to right direction
+actor User
+actor System
+User --> (Upload Image)
+User --> (View Predictions)
+User --> (Launch Interface)
+System --> (Load Model)
+System --> (Predict)
+System --> (Return Predictions)
+@enduml

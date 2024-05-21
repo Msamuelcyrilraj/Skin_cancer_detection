@@ -1,0 +1,39 @@
+@startuml
+[*] --> Uninitialized : System Startup
+
+state Uninitialized {
+  Uninitialized --> Initialized : Initialize
+}
+
+state Initialized {
+  Initialized --> DataLoading : Data Load Request
+  Initialized --> ModelTraining : Train Model Request
+}
+
+state DataLoading {
+  DataLoading --> DataLoaded : Data Loaded
+}
+
+state ModelTraining {
+  ModelTraining --> ModelTrained : Model Trained
+}
+
+state DataLoaded {
+  DataLoaded --> ModelTraining : Start Training Request
+  DataLoaded --> Inference : Make Inference Request
+}
+
+state ModelTrained {
+  ModelTrained --> Inference : Start Inference Request
+}
+
+state Inference {
+  Inference --> DataLoaded : Make Inference Request
+}
+
+DataLoading --> [*] : Terminate
+ModelTraining --> [*] : Terminate
+DataLoaded --> [*] : Terminate
+ModelTrained --> [*] : Terminate
+Inference --> [*] : Terminate
+@enduml

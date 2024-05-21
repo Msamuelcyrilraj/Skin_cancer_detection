@@ -1,0 +1,17 @@
+@startuml
+
+actor User
+participant GradioInterface
+participant ImageClassificationModel
+participant DataPreprocessing
+
+User -> GradioInterface: Launch Interface
+GradioInterface -> ImageClassificationModel: Setup with Model
+User -> GradioInterface: Upload Image
+GradioInterface -> ImageClassificationModel: Call predict method
+ImageClassificationModel -> DataPreprocessing: Load Model
+ImageClassificationModel -> DataPreprocessing: Predict Image
+DataPreprocessing -> ImageClassificationModel: Return Prediction
+GradioInterface -> User: Display Prediction
+
+@enduml

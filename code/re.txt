@@ -1,0 +1,7 @@
+prediction[i] for i in range(2)
+
+#mount google drive
+from google.colab import drive
+drive.mount('/content/gdrive')
+
+!unzip "/content/gdrive/MyDrive/SkinCancerDataset.zip" > /dev/null
